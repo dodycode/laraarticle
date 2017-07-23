@@ -71,5 +71,5 @@ Route::prefix('/adminfanclb')->group(function(){
 	Route::post('/invite/add', 'AdminController@processInvite')->name('admin.invite.process');
 
 	// User Profile
-	Route::get('/profile', 'AdminController@profil')->name('admin.profil');
+	Route::get('/profile', 'AdminController@profile')->name('admin.profil');
 });
