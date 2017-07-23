@@ -388,8 +388,7 @@ class AdminController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+            'email' => 'required'
         ]);
 
         // Cek nama user
@@ -411,20 +410,37 @@ class AdminController extends Controller
 
                 $file->move("images/user-pp/", $renamedImage);
 
-                //Masukkan ke array
-                $user = [
-                    'name' => $request->input('name'),
-                    'email' => $request->input('email'),
-                    'password' => Hash::make($request->input('password')),
-                    'image' => $renamedImage
-                ];
+                if ($request->input('password') !== null) {
+                    //Masukkan ke array
+                    $user = [
+                        'name' => $request->input('name'),
+                        'email' => $request->input('email'),
+                        'password' => Hash::make($request->input('password')),
+                        'image' => $renamedImage
+                    ];
+                }else{
+                    //Masukkan ke array
+                    $user = [
+                        'name' => $request->input('name'),
+                        'email' => $request->input('email'),
+                        'image' => $renamedImage
+                    ];
+                }
             }else{
-                //Masukkan ke array
-                $user = [
-                    'name' => $request->input('name'),
-                    'email' => $request->input('email'),
-                    'password' => Hash::make($request->input('password'))
-                ];
+                if ($request->input('password') !== null) {
+                    //Masukkan ke array
+                    $user = [
+                        'name' => $request->input('name'),
+                        'email' => $request->input('email'),
+                        'password' => Hash::make($request->input('password'))
+                    ];
+                }else{
+                    //Masukkan ke array
+                    $user = [
+                        'name' => $request->input('name'),
+                        'email' => $request->input('email')
+                    ];
+                }
             }
 
             $execute = User::find(Auth::id())->update($user);

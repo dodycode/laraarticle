@@ -30,7 +30,7 @@
                   </div>
                   <div class="form-group">
                     <label class="form-control-label">Password Akun</label>
-                    <input type="password" class="form-control" value="{{ $admin->password }}" name="password" required>
+                    <input type="password" class="form-control" placeholder="ISI JIKA MEMANG MAU DIGANTI, JIKA TIDAK BIARIN KOSONG!" name="password">
                   </div>
                   <div class="form-group">
                     <label class="form-control-label col-12" style="padding-left: 0"><b>Foto Profil</b></label>
