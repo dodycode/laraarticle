@@ -17,7 +17,7 @@
             <div class="card col-lg-10 offset-lg-1 col-md-12 col-sm-12 col-xs-12" style="padding: 0 !important">
                <div class="card-block">
            	   	<h4 class="card-title">Profil {{ $admin->name }}</h4>
-           		<form action="{{ route('admin.profil.post') }}" method="POST">
+           		<form action="{{ route('admin.profil.post') }}" method="POST" enctype="multipart/form-data">
                   {{ csrf_field() }}
                   <small style="margin-bottom: 20px">Catatan: Lewatkan saja bagian yang tidak ingin diedit</small>
                   <div class="form-group">
