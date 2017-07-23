@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <div class="animated fadeIn">
         <div class="row">
-            <div class="card col-lg-8 offset-lg-4 col-md-12 col-sm-12 col-xs-12" style="padding: 0 !important">
+            <div class="card col-lg-10 offset-lg-1 col-md-12 col-sm-12 col-xs-12" style="padding: 0 !important">
                <div class="card-block">
            	   	<h4 class="card-title">Profil {{ $admin->name }}</h4>
            		<form action="#" method="POST">
