@@ -19,29 +19,29 @@
 @endsection
 
 @section('content')
-<br>
-<form action="{{ route('invite.store', ['token' => $invite->token]) }}" method="POST" class="form-basic">
-	{!! csrf_field() !!}
-	<div class="form-title-row">
-	    <h1>Pendaftaran Staff Anime Fanclub</h1>
-	</div>
+<div class="container wrapper py5">
+	<form action="{{ route('invite.store', ['token' => $invite->token]) }}" method="POST" class="form-basic">
+		{!! csrf_field() !!}
+		<div class="form-title-row">
+		    <h1>Pendaftaran Staff Anime Fanclub</h1>
+		</div>
 
-	<div class="form-row">
-	    <label>
-	        <span>Name</span>
-	        <input type="text" name="name" placeholder="Nama Penulismu" required />
-	    </label>
-	</div>
-	<div class="form-row">
-	    <label>
-	        <span>Password</span>
-	        <input type="password" placeholder="Password akunmu" name="password">
-	    </label>
-	</div>
+		<div class="form-row">
+		    <label>
+		        <span>Name</span>
+		        <input type="text" name="name" placeholder="Nama Penulismu" required />
+		    </label>
+		</div>
+		<div class="form-row">
+		    <label>
+		        <span>Password</span>
+		        <input type="password" placeholder="Password akunmu" name="password">
+		    </label>
+		</div>
 
-	<div class="form-row">
-	    <button type="submit">Submit Form</button>
-	</div>
-</form>
-<br>
+		<div class="form-row">
+		    <button type="submit">Submit Form</button>
+		</div>
+	</form>
+</div>
 @endsection
