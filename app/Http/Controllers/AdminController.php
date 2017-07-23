@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Categories;
 use App\Tags;
 use App\Post;
@@ -381,5 +382,56 @@ class AdminController extends Controller
         $admin = User::where('id', Auth::id())->first();
         return view('dashboard.profile')
         ->with('admin', $admin);
+    }
+
+    public function editProfile(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        // Cek nama user
+        $users = User::where('name', $request->input('name'))->where('id', '<>', Auth::id())->count();
+
+        if($users < 1)
+        {
+            //Atur Cover (jika ada)
+            if($request->hasFile('image')){
+                $file = $request->file('image');
+                $extension = $file->getClientOriginalExtension(); 
+                $newname = Str::slug($request->input('name'));
+                $renamedImage = "$newname.$extension";
+
+                // Check dulu apakah img sudah ada
+                if (File::exists(public_path().'/images/user-pp/'.$renamedImage)) {
+                    File::delete(public_path().'/images/user-pp/'.$renamedImage);
+                }
+
+                $file->move("images/user-pp/", $renamedImage);
+
+                //Masukkan ke array
+                $user = [
+                    'name' => $request->input('name'),
+                    'email' => $request->input('email'),
+                    'password' => Hash::make($request->input('password')),
+                    'image' => $renamedImage
+                ];
+            }else{
+                //Masukkan ke array
+                $user = [
+                    'name' => $request->input('name'),
+                    'email' => $request->input('email'),
+                    'password' => Hash::make($request->input('password'))
+                ];
+            }
+
+            $execute = User::find(Auth::id())->update($user);
+
+            return redirect()->to(route('admin.index'));
+        }else{
+            return redirect()->back()->with('Error', 'Nama tersebut telah digunakan admin lain!');
+        }
     }
 }

@@ -74,4 +74,5 @@ Route::prefix('/adminfanclb')->group(function(){
 
 	// User Profile
 	Route::get('/profile', 'AdminController@profile')->name('admin.profil');
+	Route::post('/profile', 'AdminController@editProfile')->name('admin.profil.post');
 });
