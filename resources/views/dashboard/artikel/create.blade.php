@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('plugin')
-<script src="{{ secure_asset('js/tinymce/tinymce.min.js') }}"></script>
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
 @stop
 
 @section('content')
