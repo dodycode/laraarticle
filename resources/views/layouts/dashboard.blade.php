@@ -11,8 +11,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="{{ asset('images/favico-64x64.png') }}" type="image/x-icon" />
-    <link rel="icon" href="{{ asset('images/favico-64x64.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ secure_asset('images/favico-64x64.png') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ secure_asset('images/favico-64x64.png') }}" type="image/x-icon">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -20,11 +20,11 @@
     <title>Admin Page</title>
 
     <!-- Main Styles for this app -->
-    <link href="{{ asset('css/coreui-style.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/coreui-style.css') }}" rel="stylesheet">
 
     <!-- Icons -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="{{ asset('css/simple-line-icons.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/simple-line-icons.css') }}" rel="stylesheet">
 
     @section('plugin')
     @show
@@ -118,7 +118,7 @@
 
 
     <!-- GenesisUI main scripts -->
-    <script src="{{ asset('js/genesis-ui.min.js') }}"></script>
+    <script src="{{ secure_asset('js/genesis-ui.min.js') }}"></script>
 
     <!-- Plugin Script -->
     @section('pluginjs')

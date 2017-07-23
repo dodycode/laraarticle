@@ -16,9 +16,9 @@
 
 						<a href="{{ route('home.read', ['slug' => $post->slug]) }}" class="card__image">
 							@if($post->image !== null)
-							<img src="{{ asset('images/post-img/'.$post->image) }}" alt="{{ $post->title }}">
+							<img src="{{ secure_asset('images/post-img/'.$post->image) }}" alt="{{ $post->title }}">
 							@else
-							<img src="{{ asset('images/post-img/noimg.png') }}" alt="{{ $post->title }}">
+							<img src="{{ secure_asset('images/post-img/noimg.png') }}" alt="{{ $post->title }}">
 							@endif
 						</a>
 
@@ -59,9 +59,9 @@
 			<a href="{{ route('home.read', ['slug' => $post->slug]) }}" class="card col mb1 sm-mb2">
 				<div class="card__image">
 					@if($post->image !== null)
-					<img src="{{ asset('images/post-img/'.$post->image) }}" alt="{{ $post->title }}">
+					<img src="{{ secure_asset('images/post-img/'.$post->image) }}" alt="{{ $post->title }}">
 					@else
-					<img src="{{ asset('images/post-img/noimg.png') }}" alt="{{ $post->title }}">
+					<img src="{{ secure_asset('images/post-img/noimg.png') }}" alt="{{ $post->title }}">
 					@endif
 				</div>
 				<div class="card__content">
@@ -93,9 +93,9 @@
 			<a href="{{ route('home.read', ['slug' => $post->slug]) }}" class="card col mb1 sm-mb2">
 				<div class="card__image">
 					@if($post->image !== null)
-					<img src="{{ asset('images/post-img/'.$post->image) }}" alt="{{ $post->title }}">
+					<img src="{{ secure_asset('images/post-img/'.$post->image) }}" alt="{{ $post->title }}">
 					@else
-					<img src="{{ asset('images/post-img/noimg.png') }}" alt="{{ $post->title }}">
+					<img src="{{ secure_asset('images/post-img/noimg.png') }}" alt="{{ $post->title }}">
 					@endif
 				</div>
 				<div class="card__content">
@@ -127,9 +127,9 @@
 			<a href="{{ route('home.read', ['slug' => $post->slug]) }}" class="card col mb1 sm-mb2">
 				<div class="card__image">
 					@if($post->image !== null)
-					<img src="{{ asset('images/post-img/'.$post->image) }}" alt="{{ $post->title }}">
+					<img src="{{ secure_asset('images/post-img/'.$post->image) }}" alt="{{ $post->title }}">
 					@else
-					<img src="{{ asset('images/post-img/noimg.png') }}" alt="{{ $post->title }}">
+					<img src="{{ secure_asset('images/post-img/noimg.png') }}" alt="{{ $post->title }}">
 					@endif
 				</div>
 				<div class="card__content">

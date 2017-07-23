@@ -10,7 +10,7 @@
 					<div class="post__image">
 						<a href="{{ route('home.read', ['slug' => $post->slug]) }}">
 							@if($post->image !== null)
-							<img src="{{ asset('images/post-img/'.$post->image) }}" alt="{{ $post->title }}">
+							<img src="{{ secure_asset('images/post-img/'.$post->image) }}" alt="{{ $post->title }}">
 							@endif
 						</a>
 					</div>
@@ -43,7 +43,7 @@
 					</div>
 					<div class="post__footer">
 						<div class="post__author">
-							<img class="author__image" src="{{ asset('images/user-pp/user.png') }}">
+							<img class="author__image" src="{{ secure_asset('images/user-pp/user.png') }}">
 							<div class="author__content">
 								<h4 class="author__name">By <a href="#">{{ $post->namaPenulis->name }}</a></h4>
 							</div>
@@ -78,9 +78,9 @@
 								<div class="item-thumbnail">
 									<a href="{{ route('home.read', ['slug' => $post->slug]) }}" class="thumbnail">
 										@if($post->image !== null)
-										<span class="thumbnail-image" style="background-image: url('{{ asset('images/post-img/'.$post->image) }}')"></span>
+										<span class="thumbnail-image" style="background-image: url('{{ secure_asset('images/post-img/'.$post->image) }}')"></span>
 										@else
-										<span class="thumbnail-image" style="background-image: url('{{ asset('images/post-img/noimg.png') }}')"></span>
+										<span class="thumbnail-image" style="background-image: url('{{ secure_asset('images/post-img/noimg.png') }}')"></span>
 										@endif
 									</a>
 								</div>

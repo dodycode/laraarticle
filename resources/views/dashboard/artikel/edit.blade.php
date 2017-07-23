@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('plugin')
-<script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
+<script src="{{ secure_asset('js/tinymce/tinymce.min.js') }}"></script>
 @stop
 
 @section('content')
@@ -31,9 +31,9 @@
                   <div class="form-group">
                     <label class="form-control-label col-12" style="padding-left: 0"><b>Gambar Cover</b></label>
                     @if($artikel->image !== null)
-                    <img src="{{asset('images/post-img/'.$artikel->image)}}" id="showgambar" class="img-responsive" style="max-width: 300px; max-height: 300px;" />
+                    <img src="{{secure_asset('images/post-img/'.$artikel->image)}}" id="showgambar" class="img-responsive" style="max-width: 300px; max-height: 300px;" />
                     @else
-                    <img src="{{asset('images/post-img/noimg.png')}}" id="showgambar" class="img-responsive" style="max-width: 300px; max-height: 300px;" />
+                    <img src="{{secure_asset('images/post-img/noimg.png')}}" id="showgambar" class="img-responsive" style="max-width: 300px; max-height: 300px;" />
                     @endif
                   </div>
                   <div class="form-group">
@@ -89,13 +89,13 @@
     toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
     image_advtab: true,
     relative_urls: false,
-    external_filemanager_path:"{!! str_finish(asset('/filemanager'),'/') !!}",
+    external_filemanager_path:"{!! str_finish(secure_asset('/filemanager'),'/') !!}",
     filemanager_title        :"Responsive File Manager" , 
-    external_plugins         : { "filemanager" : "{{ asset('/filemanager/plugin.min.js') }}"},
+    external_plugins         : { "filemanager" : "{{ secure_asset('/filemanager/plugin.min.js') }}"},
 
     content_css: [
       '//fonts.googleapis.com/css?family=Miriam+Libre:400,700|Source+Sans+Pro:400,700,600,400italic,700italic',
-      '{{ asset("css/tinymce.min.css") }}'
+      '{{ secure_asset("css/tinymce.min.css") }}'
     ]
   });
 </script>

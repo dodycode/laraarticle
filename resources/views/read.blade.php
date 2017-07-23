@@ -5,7 +5,7 @@
 	<div class="card post mt2">
 		@if($post->image !== null)
 		<div class="post__image">
-			<img src="{{ asset('images/post-img/'.$post->image) }}" alt="{{ $post->title }}">
+			<img src="{{ secure_asset('images/post-img/'.$post->image) }}" alt="{{ $post->title }}">
 		</div>
 		@endif
 
@@ -25,7 +25,7 @@
 
 		<div class="post__footer">
 			<div class="post__author">
-				<img class="author__image" src="{{ asset('images/user-pp/user.png') }}">
+				<img class="author__image" src="{{ secure_asset('images/user-pp/user.png') }}">
 				<div class="author__content">
 					<h4 class="author__name">By <a href="#">{{ $post->namaPenulis->name }}</a></h4>
 				</div>
