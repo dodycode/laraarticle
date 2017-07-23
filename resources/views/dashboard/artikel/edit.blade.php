@@ -19,7 +19,7 @@
           </div>
         @endif
         <div class="row">
-            <div class="card col-lg-12">
+            <div class="card col-12">
               <div class="card-block">
                 <h4 class="card-title">Edit Artikel</h4>
                 <form action="{{ route('admin.artikel.storeEdit', ['id' => $artikel->id]) }}" method="POST" enctype="multipart/form-data">

@@ -31,7 +31,7 @@ class InviteCreated extends Mailable
      */
     public function build()
     {
-        return $this->from('prasetyodody17@gmail.com')
+        return $this->from('AnimeFanClub@weaboo.com')
                 ->view('dashboard.invite.email');
     }
 }

@@ -55,7 +55,7 @@ class HomeController extends Controller
     public function readPost($slug)
     {
         //get post
-        $post = Post::where('slug', $slug)->first();
+        $post = Post::where('slug', $slug)->where('aired', 1)->first();
         if (!$post) {
             return view('errors.404');
         }
