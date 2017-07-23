@@ -30,6 +30,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             @if(Session::get('Success'))
             <h5>{{ Session::get('Success') }}</h5>
             @endif
+
+            @if ($errors->has('email'))
+            <h3>
+                <strong>{{ $errors->first('email') }}</strong>
+            </h3>
+            @endif
+
+            @if ($errors->has('password'))
+            <h3>
+                <strong>{{ $errors->first('password') }}</strong>
+            </h3>
+            @endif
             <div class="header-bottom">
                 <div class="header-right w3agile">
                     <div class="header-left-bottom agileinfo">
