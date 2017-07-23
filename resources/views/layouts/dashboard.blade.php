@@ -42,7 +42,11 @@
         <ul class="nav navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    @if(Auth::user()->image !== null)
+                    <img src="{{ asset('images/user-pp/'.Auth::user()->image) }}" class="img-avatar" alt="{{ Auth::user()->email }}">
+                    @else
                     <img src="{{ asset('images/user-pp/user.png') }}" class="img-avatar" alt="{{ Auth::user()->email }}">
+                    @endif
                     <span class="d-md-down-none">{{ Auth::user()->name }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -50,7 +54,7 @@
                     <div class="dropdown-header text-center">
                         <strong>Account</strong>
                     </div>
-                    <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
+                    <a class="dropdown-item" href="{{ route('admin.profil') }}"><i class="fa fa-user"></i> Profil</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">

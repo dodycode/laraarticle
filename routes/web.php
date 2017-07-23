@@ -37,7 +37,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 
 // Admin Routes
-Route::prefix('/home')->group(function(){
+Route::prefix('/adminfanclb')->group(function(){
 	Route::get('/', 'AdminController@index')->name('admin.index');
 
 	// Artikel
@@ -69,4 +69,7 @@ Route::prefix('/home')->group(function(){
 	Route::get('/invite', 'AdminController@getInviteList')->name('admin.invite');
 	Route::get('/invite/add', 'AdminController@createInvite')->name('admin.invite.add');
 	Route::post('/invite/add', 'AdminController@processInvite')->name('admin.invite.process');
+
+	// User Profile
+	Route::get('/profile', 'AdminController@profil')->name('admin.profil');
 });

@@ -10,6 +10,7 @@ use App\Categories;
 use App\Tags;
 use App\Post;
 use App\Invite;
+use App\User;
 use App\Mail\InviteCreated;
 use File;
 
@@ -373,5 +374,12 @@ class AdminController extends Controller
 
 	    // redirect back where we came from
 	    return redirect()->to(route('admin.invite'));
+    }
+
+    public function profile()
+    {
+        $admin = User::where('id', Auth::id())->first();
+        return view('dashboard.profile')
+        ->with('admin', $admin);
     }
 }
