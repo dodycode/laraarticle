@@ -167,7 +167,6 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
-        Petehouston\Tinymce\TinymceServiceProvider::class,
 
         /*
          * Application Service Providers...
