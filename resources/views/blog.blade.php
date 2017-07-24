@@ -75,7 +75,11 @@
 			<div class="widget-wrapper" style="margin-top: 0">
 				<h3 class="widget-title">Latest Post</h3>
 				<div class="widget">
+					@if(count($widgetPost) > 0)
+					<ul id="recent-post">
+					@else
 					<ul id="recent-post" style="margin-left: -15px">
+					@endif
 						@if(count($widgetPost) > 0)
 							@foreach($widgetPost as $post)
 							<li>
