@@ -25,7 +25,11 @@
 
 		<div class="post__footer">
 			<div class="post__author">
+				@if($post->namaPenulis->image !== null)
+				<img class="author__image" src="{{ secure_asset('images/user-pp/'.$post->namaPenulis->image) }}">
+				@else
 				<img class="author__image" src="{{ secure_asset('images/user-pp/user.png') }}">
+				@endif
 				<div class="author__content">
 					<h4 class="author__name">By <a href="#">{{ $post->namaPenulis->name }}</a></h4>
 				</div>
