@@ -1,8 +1,10 @@
 @extends('layouts.dashboard')
 
 @section('plugin')
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=51qdgatrhg12dd08hwx6cimh1e3259d96howla0dkh628pf7"></script>
-@stop
+<style type="text/css">
+  .modal-backdrop{display:none}.note-placeholder{position:absolute;top:90px;left:95px;font-size:34px;color:#e4e5e7;display:none;pointer-events:none}.note-editor .note-toolbar{background:#F5F5F5;border-bottom:1px solid #c2cad8}.summernote .panel-primary>.panel-heading{color:#333;background-color:#f5f5f5;border-color:#ddd}.summernote .btn-default{background:#fff!important}.summernote .btn-default:hover{background:#4285F4!important}.summernote .btn-default.active{background:#0B51C5!important}.summernote .btn{color:#000!important;background-color:#fff;border:1px solid #ccc;white-space:nowrap!important;padding:6px 12px;font-size:14px;line-height:1.42857;user-select:none;box-shadow:none!important}.summernote .btn:hover{cursor:pointer}
+</style>
+@endsection
 
 @section('content')
 <!-- Breadcrumb -->
@@ -60,9 +62,9 @@
                     <input id="gambar_post" class="col-12" name="image" type="file" style="padding-left: 0" />
                     <small>Cover dapat dikosongkan kalau memang tidak ada gambar cover untuk post nya</small>
                   </div>
-                  <div class="form-group">
-                    <label class="form-control-label"><b>Konten</b></label>
-                    <textarea name="content" id="content" class="form-control" style="resize: none"></textarea>
+                  <div class="form-group summernote">
+                    <label class="form-control-label"><b>Konten Artikel</b></label>
+                    <textarea name="content" id="content" style="resize: none"></textarea>
                   </div>
                   <div class="form-group">
                     <label class="form-control-label"><b>Kategori Artikel</b></label>
@@ -104,29 +106,30 @@
 @endsection
 
 @section('pluginjs')
-<script type="text/javascript">
-  tinymce.init({
-    selector: '#content',
-    height: 500,
-    theme: 'modern',
-    plugins: [
-      'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-      'searchreplace wordcount visualblocks visualchars code fullscreen',
-      'insertdatetime media nonbreaking save table contextmenu directionality',
-      'emoticons template paste textcolor colorpicker textpattern image imagetools codesample toc'
-    ],
-    toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-    toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
-    image_advtab: true,
-    relative_urls: false,
-    external_filemanager_path:"{!! str_finish(secure_asset('/filemanager'),'/') !!}",
-    filemanager_title        :"Responsive File Manager" , 
-    external_plugins         : { "filemanager" : "{{ secure_asset('/filemanager/plugin.min.js') }}"},
+<!-- include summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/summernote.js"></script>
 
-    content_css: [
-      '//fonts.googleapis.com/css?family=Miriam+Libre:400,700|Source+Sans+Pro:400,700,600,400italic,700italic',
-      '{{ secure_asset("css/tinymce.min.css") }}'
-    ]
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#content').summernote({
+      height: 500,
+      minHeight: 300,
+      maxHeight: 500,
+      focus: true,
+      airMode: false,
+      fontNames: ['Roboto', 'Calibri', 'Times New Roman', 'Arial'],
+      fontNamesIgnoreCheck: ['Roboto', 'Calibri'],
+      dialogsInBody: true,
+      dialogsFade: true,
+      disableDragAndDrop: false,
+      popover: {
+          air: [
+              ['color', ['color']],
+              ['font', ['bold', 'underline', 'clear']]
+          ]
+      },
+    });
   });
 </script>
 
