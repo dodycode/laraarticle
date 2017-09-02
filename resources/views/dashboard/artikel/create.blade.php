@@ -4,6 +4,10 @@
 <style type="text/css">
   .modal-backdrop{display:none}.note-placeholder{position:absolute;top:90px;left:95px;font-size:34px;color:#e4e5e7;display:none;pointer-events:none}.note-editor .note-toolbar{background:#F5F5F5;border-bottom:1px solid #c2cad8}.summernote .panel-primary>.panel-heading{color:#333;background-color:#f5f5f5;border-color:#ddd}.summernote .btn-default{background:#fff!important}.summernote .btn-default:hover{background:#4285F4!important}.summernote .btn-default.active{background:#0B51C5!important}.summernote .btn{color:#000!important;background-color:#fff;border:1px solid #ccc;white-space:nowrap!important;padding:6px 12px;font-size:14px;line-height:1.42857;user-select:none;box-shadow:none!important}.summernote .btn:hover{cursor:pointer}
 </style>
+
+<style type="text/css">
+  #progress-wrp{border:1px solid #09C;padding:1px;position:relative;border-radius:3px;margin:10px;text-align:left;background:#fff;box-shadow:inset 1px 3px 6px rgba(0,0,0,.12)}#progress-wrp .progress-bar{height:20px;border-radius:3px;background-color:#f39ac7;width:0;box-shadow:inset 1px 1px 10px rgba(0,0,0,.11)}#progress-wrp .status{top:3px;left:50%;position:absolute;display:inline-block;color:#000}
+</style>
 @endsection
 
 @section('content')
@@ -56,11 +60,14 @@
                   </div>
                   <div class="form-group">
                     <label class="form-control-label col-12" style="padding-left: 0"><b>Gambar Cover</b></label>
-                    <img src="{{ secure_asset('images/post-img/noimg.png') }}" id="showgambar" class="img-responsive" style="max-width: 300px; max-height: 300px;" />
+                    <img src="{{ asset('images/post-img/noimg.png') }}" id="showgambar" class="img-responsive" style="max-width: 300px; max-height: 300px;" />
                   </div>
                   <div class="form-group">
                     <input id="gambar_post" class="col-12" name="image" type="file" style="padding-left: 0" />
                     <small>Cover dapat dikosongkan kalau memang tidak ada gambar cover untuk post nya</small>
+                  </div>
+                  <div class="form-group">
+                    <div id="progress-wrp" style="display: none"><div class="progress-bar"></div ><div class="status">0%</div></div>
                   </div>
                   <div class="form-group summernote">
                     <label class="form-control-label"><b>Konten Artikel</b></label>
@@ -114,6 +121,11 @@
   $(document).ready(function() {
     $('#content').summernote({
       height: 500,
+      callbacks: {
+        onImageUpload: function(image) {
+            uploadImage(image[0]);
+        }
+      },
       minHeight: 300,
       maxHeight: 500,
       focus: true,
@@ -131,6 +143,46 @@
       },
     });
   });
+
+  function uploadImage(image) {
+      var data = new FormData();
+      data.append("image", image);
+      $.ajax({
+        url: '/ajaximage',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: data,
+        type: "post",
+        xhr: function(){
+            //upload Progress
+            var xhr = $.ajaxSettings.xhr();
+            if (xhr.upload) {
+                xhr.upload.addEventListener('progress', function(event) {
+                    var percent = 0;
+                    var position = event.loaded || event.position;
+                    var total = event.total;
+                    if (event.lengthComputable) {
+                        percent = Math.ceil(position / total * 100);
+                    }
+                    //update progressbar
+                    $("#progress-wrp").show().delay(2000).fadeOut();
+                    $('#progress-wrp' +" .progress-bar").css("width", + percent +"%");
+                    $('#progress-wrp' + " .status").text(percent +"%");
+                }, true);
+            }
+            return xhr;
+        },
+        success: function(url) {
+            var image = $('<img>').attr('src', url);
+            $('#content').summernote("insertNode", image[0]);
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+  }
 </script>
 
 <script>

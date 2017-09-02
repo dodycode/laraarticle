@@ -53,7 +53,7 @@
                 <td class="text-center">{{ $artikel->namaKategori->category }}</td>
                 <td class="text-center">
                   <small>
-                    <a href="#" target="_blank" class="btn btn-default btn-md">
+                    <a href="{{ route('admin.artikel.view', ['id' => $artikel->id]) }}" target="_blank" class="btn btn-default btn-md">
                       <i class="fa fa-eye" aria-hidden="true"></i>
                     </a>
                     <a href="{{ route('admin.artikel.edit', ['id' => $artikel->id]) }}" class="btn btn-default btn-md">

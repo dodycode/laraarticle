@@ -1,7 +1,4 @@
 <?php
-
-URL::forceScheme("https");
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +10,24 @@ URL::forceScheme("https");
 |
 */
 
+// CLI Commands
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    return redirect()->to(route('home'));
+});
+
+Route::get('/migrate', function() {
+    $exitCode = Artisan::call('migrate:refresh', [
+    '--seed' => true,
+	]);
+    return redirect()->to(route('home'));
+});
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/read/{slug}', 'HomeController@readPost')->name('home.read');
 Route::get('/category', 'HomeController@categories')->name('home.listcat');
 Route::get('/category/{category}', 'HomeController@readPostByCategory')->name('home.category');
+Route::post('/ajaximage', 'HomeController@processImage')->name('home.img');
 
 // User Inviation
 Route::get('/daftar/{token}', 'HomeController@processRegistration')->name('invite.register');
@@ -37,6 +48,8 @@ Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
+Route::get('/test', 'HomeController@test')->name('test');
+
 
 // Admin Routes
 Route::prefix('/adminfanclb')->group(function(){
@@ -50,6 +63,7 @@ Route::prefix('/adminfanclb')->group(function(){
 	Route::post('/artikel/edit/{id}', 'AdminController@storeEditedArtikel')->name('admin.artikel.storeEdit');
 	Route::get('/artikel/delete/{id}', 'AdminController@deleteArtikel')->name('admin.artikel.delete');
 	Route::get('/artikel/terbitkan/{id}', 'AdminController@terbitkanArtikel')->name('admin.artikel.publish');
+	Route::get('/lihatpenampakan/{id}', 'AdminController@lihatArtikel')->name('admin.artikel.view');
 
 	// Kategori
 	Route::get('/kategori', 'AdminController@getCategories')->name('admin.category');

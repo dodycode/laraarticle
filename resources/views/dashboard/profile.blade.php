@@ -35,9 +35,9 @@
                   <div class="form-group">
                     <label class="form-control-label col-12" style="padding-left: 0"><b>Foto Profil</b></label>
                     @if($admin->image !== null)
-                    <img src="{{ secure_asset('images/user-pp/'.$admin->image) }}" id="showgambar" class="img-responsive" style="max-width: 300px; max-height: 300px;" />
+                    <img src="{{ asset('images/user-pp/'.$admin->image) }}" id="showgambar" class="img-responsive" style="max-width: 300px; max-height: 300px;" />
                     @else
-                    <img src="{{ secure_asset('images/user-pp/user.png') }}" id="showgambar" class="img-responsive" style="max-width: 300px; max-height: 300px;" />
+                    <img src="{{ asset('images/user-pp/user.png') }}" id="showgambar" class="img-responsive" style="max-width: 300px; max-height: 300px;" />
                     @endif
                   </div>
                   <div class="form-group">

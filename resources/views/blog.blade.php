@@ -1,4 +1,23 @@
 @extends('layouts.app')
+@section('title_and_meta')
+	<title>Daftar Artikel | {{ config('app.name', 'Laravel') }}</title>
+	<meta name="description" content="Gudangnya informasi seputar jejepangan" />
+
+	<!-- Social Meta Tags -->
+  	<meta property="og:title" content="Daftar Artikel | {{ config('app.name', 'Laravel') }}"/>
+  	<meta property="og:type" content="article"/>
+  	<meta property="og:url" content="{{ url()->current() }}" />
+  	<meta property="og:description" content="Gudangnya informasi seputar jejepangan" />
+  	<meta property="og:image" content="https://s-media-cache-ak0.pinimg.com/originals/5a/52/62/5a526234a7d818d68b2e12b432afe007.jpg" />
+
+  	<!-- Twitter Meta Cards -->
+  	<meta name="twitter:card" content="summary" />
+  	<meta name="twitter:url" content="{{ url()->current() }}" />
+  	<meta name="twitter:title" content="Daftar Artikel | {{ config('app.name', 'Laravel') }}" />
+  	<meta name="twitter:description" content="Gudangnya informasi seputar jejepangan" />
+  	<meta name="twitter:image" content="https://s-media-cache-ak0.pinimg.com/originals/5a/52/62/5a526234a7d818d68b2e12b432afe007.jpg" />
+@endsection
+
 @section('content')
 <div class="container wrapper">
 	<div class="callout my1"></div>
@@ -10,7 +29,7 @@
 					<div class="post__image">
 						<a href="{{ route('home.read', ['slug' => $post->slug]) }}">
 							@if($post->image !== null)
-							<img src="{{ secure_asset('images/post-img/'.$post->image) }}" alt="{{ $post->title }}">
+							<img src="{{ asset('images/post-img/'.$post->image) }}" alt="{{ $post->title }}">
 							@endif
 						</a>
 					</div>
@@ -44,9 +63,9 @@
 					<div class="post__footer">
 						<div class="post__author">
 							@if($post->namaPenulis->image !== null)
-							<img class="author__image" src="{{ secure_asset('images/user-pp/'.$post->namaPenulis->image) }}">
+							<img class="author__image" src="{{ asset('images/user-pp/'.$post->namaPenulis->image) }}">
 							@else
-							<img class="author__image" src="{{ secure_asset('images/user-pp/user.png') }}">
+							<img class="author__image" src="{{ asset('images/user-pp/user.png') }}">
 							@endif
 							<div class="author__content">
 								<h4 class="author__name">By <a href="#">{{ $post->namaPenulis->name }}</a></h4>
@@ -86,9 +105,9 @@
 								<div class="item-thumbnail">
 									<a href="{{ route('home.read', ['slug' => $post->slug]) }}" class="thumbnail">
 										@if($post->image !== null)
-										<span class="thumbnail-image" style="background-image: url('{{ secure_asset('images/post-img/'.$post->image) }}')"></span>
+										<span class="thumbnail-image" style="background-image: url('{{ asset('images/post-img/'.$post->image) }}')"></span>
 										@else
-										<span class="thumbnail-image" style="background-image: url('{{ secure_asset('images/post-img/noimg.png') }}')"></span>
+										<span class="thumbnail-image" style="background-image: url('{{ asset('images/post-img/noimg.png') }}')"></span>
 										@endif
 									</a>
 								</div>

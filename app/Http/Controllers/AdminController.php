@@ -342,6 +342,18 @@ class AdminController extends Controller
         return redirect()->to(route('admin.artikel'));
     }
 
+    public function lihatArtikel($id)
+    {
+        //get post
+        $post = Post::where('id', $id)->where('deleted', 0)->first();
+        if (!$post) {
+            return view('errors.404');
+        }
+
+        return view('read')
+        ->with('post', $post);
+    }
+
     public function getInviteList()
     {
     	$inviteList = Invite::paginate(5);

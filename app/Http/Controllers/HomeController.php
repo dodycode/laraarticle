@@ -135,4 +135,17 @@ class HomeController extends Controller
 
         return redirect()->to(route('login'))->with('Success', 'Silahkan login untuk melanjutkan');
     }
+
+    public function processImage(Request $request)
+    {
+
+        if ($request->file('image')->getClientSize() > 0) {
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName();
+
+            $file->move(public_path().'/images/content-img/', $filename);
+
+            echo url('/').'/images/content-img/'.$filename;
+        }
+    }
 }
